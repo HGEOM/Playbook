@@ -1,0 +1,23 @@
+---
+- name: Cambiar fondo de pantalla en Ubuntu
+  hosts: all
+  become: true  # Necesitamos privilegios de superusuario
+  vars:
+    # Ruta local del archivo de imagen
+    imagen_fondo_local: "/Documentos/Noviembre.jpeg"
+    
+    # Ruta remota donde se copiará la imagen (en este caso, en el directorio del usuario)
+    imagen_fondo_remota: "/home/tics/Documentos/Noviembre.jpeg"
+
+  tasks:
+    - name: Copiar la imagen al servidor
+      ansible.builtin.copy:
+        src: "{{ imagen_fondo_local }}"
+        dest: "{{ imagen_fondo_remota }}"
+        mode: '0644'
+
+    - name: Cambiar fondo de pantalla utilizando gsettings (GNOME)
+      ansible.builtin.command:
+        cmd: >
+          gsettings set org.gnome.desktop.background picture-uri "file://{{ imagen_fondo_remota }}"
+        become_user: tics  # Reemplaza 'usuario' con el nombre de tu usuario
