@@ -1,0 +1,9 @@
+---
+- name: Obtener tiempo de encendido del PC con Ubuntu
+  hosts: all                # Define el grupo de hosts o la dirección IP de tu máquina Ubuntu
+  gather_facts: yes         # Recoge todos los hechos del sistema, como la información de uptime
+
+  tasks:
+    - name: Mostrar tiempo de actividad
+      debug:
+        msg: "El sistema ha estado encendido durante {{ ansible_facts.uptime }} segundos"
