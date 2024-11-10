@@ -4,10 +4,10 @@
   become: true  # Necesitamos privilegios de superusuario
   vars:
     # Ruta local del archivo de imagen
-    imagen_fondo_local: "/Documentos/Noviembre.jpeg"
+    imagen_fondo_local: "\\10.100.1.20\Fondo\Octubre.jpg"   
     
     # Ruta remota donde se copiará la imagen (en este caso, en el directorio del usuario)
-    imagen_fondo_remota: "/home/tics/Documentos/Noviembre.jpeg"
+    imagen_fondo_remota: "/home/tics/Documentos/Octubre.jpg"
 
   tasks:
     - name: Copiar la imagen al servidor
